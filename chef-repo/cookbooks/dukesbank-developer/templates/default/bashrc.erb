@@ -1,0 +1,13 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific aliases and functions
+
+export JAVA_HOME="<%= @javaHome %>"
+export ANT_HOME="<%= @antHome %>"
+export JBOSS_HOME="<%= @jbossHome %>"
+export HSQLDB_HOME="<%= @hsqldbHome %>"

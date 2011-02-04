@@ -1,0 +1,10 @@
+default[:jboss][:installRoot] = "/usr/local/jboss-4.0.5.GA"
+default[:jboss][:serverConfig] = "default"
+default[:jboss][:pkgRepoLocation] = "/jboss/zips/jboss-4.0.5.GA.zip"
+#still need source location for this zip to get it into the package repo (use hudson to bootstrap this)
+default[:jboss][:javaHome] = "/usr"
+default[:jboss][:javaOpts] = "-Xms256m -Xmx512m"
+default[:jboss][:user] = "jboss"
+default[:jboss][:group] = "jboss"
+default[:jboss][:timezone] = "US/Pacific"
+default[:jboss][:server][:mbean][:ServerName] = "ports-default"

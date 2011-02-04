@@ -1,0 +1,36 @@
+#
+# Hsqldb Server cfg file.
+#
+# See the Advanced Topics chapter of the Hsqldb User Guide
+# at /opt/hsqldb/doc/guide/index.html or http://hsqldb.org .
+#
+
+#
+# The path and file name of the first database file to use:
+#
+server.database.0   file:<%= @rdbInstanceName %>/<%= @rdbInstanceName %>
+#
+# Lowercase server alias for the first database file:
+#
+# JDBC access url will end with hostname or hostname:port by default.  To
+# require an "instance alias" after the hostname/port, set server.dbname.X:
+server.dbname.1     <%= @rdbInstanceName %>
+#
+# Whether or not extensive messages displayed on console:
+#
+server.silent   false
+#
+# JDBC trace messages displayed on console:
+#
+server.trace    true
+#
+# TCP/IP port used for talking to clients. All databases are served on the same port:
+#
+server.port    <%= @rdbPort %>
+#
+# system.exit() will be called when the database is closed:
+#
+server.no_system_exit   false
+#
+# End of file.
+#

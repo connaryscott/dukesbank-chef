@@ -1,0 +1,7 @@
+if [ "x$JAVA_OPTS" = "x" ]; then
+   JAVA_OPTS="<%= @jbossJavaOpts %>"
+fi
+JBOSS_HOME="<%= @jbossHome %>"
+JAVA_HOME="<%= @jbossJavaHome %>"
+JBOSS_USER="<%= @jbossUser %>"
+JAVA_OPTS="$JAVA_OPTS -Duser.timezone=<%= @jbossTimezone %>"

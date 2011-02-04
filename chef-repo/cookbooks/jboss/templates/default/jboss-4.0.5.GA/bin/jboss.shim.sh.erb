@@ -1,0 +1,37 @@
+#!/bin/sh
+
+if [ "X" = "${RUN_CONF}X" ]; then
+   echo environment RUN_CONF is not defined 1>&2
+   exit 1
+fi
+
+if [ "X" = "${JBOSS_HOME}X" ]; then
+   echo environment JBOSS_HOME is not defined 1>&2
+   exit 1
+fi
+
+if [ ! -f ${RUN_CONF} ]; then
+   echo $RUN_CONF does not exist 1>&2
+   exit 1
+fi
+
+if [ ! -f ${JBOSS_HOME}/bin/run.sh ]; then
+   echo ${JBOSS_HOME}/bin/run.sh does not exist 1>&2
+   exit 1
+fi
+
+if [ "X" = "${OUTFILE}X" ]; then
+   echo environment OUTFILE is not defined 1>&2
+   exit 1
+fi
+
+if [ "X" = "${ERRFILE}X" ]; then
+   echo environment ERRFILE is not defined 1>&2
+   exit 1
+fi
+
+
+. ${RUN_CONF}
+
+
+nohup sh $JBOSS_HOME/bin/run.sh $* > $OUTFILE 2> $ERRFILE &

@@ -1,0 +1,10 @@
+maintainer       "YOUR_COMPANY_NAME"
+maintainer_email "YOUR_EMAIL"
+license          "All rights reserved"
+description      "Installs/Configures dukesbank-developer"
+long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
+version          "0.0.1"
+depends	         "ant"
+depends	         "jboss"
+depends	         "hsqldb"
+depends          "dukesbank-demo-pkgs"

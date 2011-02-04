@@ -1,0 +1,41 @@
+{
+  "attributes": {
+  },
+  "maintainer": "YOUR_COMPANY_NAME",
+  "recipes": {
+  },
+  "replacing": {
+  },
+  "license": "All rights reserved",
+  "maintainer_email": "YOUR_EMAIL",
+  "groupings": {
+  },
+  "dependencies": {
+    "jboss": [
+
+    ],
+    "hsqldb": [
+
+    ],
+    "ant": [
+
+    ],
+    "dukesbank-demo-pkgs": [
+
+    ]
+  },
+  "recommendations": {
+  },
+  "name": "dukesbank-developer",
+  "platforms": {
+  },
+  "description": "Installs/Configures dukesbank-developer",
+  "version": "0.0.1",
+  "suggestions": {
+  },
+  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
+  "conflicting": {
+  },
+  "providing": {
+  }
+}
