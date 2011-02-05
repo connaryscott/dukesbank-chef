@@ -3,13 +3,11 @@ description "dukesbank jboss role"
 run_list(
    "recipe[apache]",
    "recipe[rundeck]",
-   "recipe[hudson]",
    "recipe[dukesbank-developer]"
 )
 #we need ant and java, try java-1.6.0-openjdk-devel which is an rpm for centos that includes compiler
 default_attributes(
    "global" => {
-      "workspace" => "/home/dukesbank/workspace",
       "javaHome" => "/usr",
       "pkgRepo" => {
          "url" => "http://localhost/pkgs"
