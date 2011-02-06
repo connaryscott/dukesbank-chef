@@ -7,9 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-#default[:hudson][:hostname] = "localhost"
-#default[:hudson][:listenPort] = "8080"
-#default[:hudson][:cliJarLocation] = "/jnlpJars/hudson-cli.jar"
+startService = node[:hudson][:startService]
 
 script "install" do
    interpreter "bash"
@@ -28,4 +26,12 @@ package "hudson" do
    action :install
    version "1.395-1.1"
    provider Chef::Provider::Package::Yum
+end
+
+#TODO, make idempotent
+service "hudson" do
+   case startService
+   when "true"
+      action :restart
+   end
 end

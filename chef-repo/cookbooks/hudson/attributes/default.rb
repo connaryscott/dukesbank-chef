@@ -1,3 +1,6 @@
 default[:hudson][:hostname] = "localhost"
 default[:hudson][:listenPort] = "8080"
-default[:hudson][:cliJarLocation] = "/jnlpJars/hudson-cli.jar"
+default[:hudson][:url] = "http://#{default[:hudson][:hostname]}:#{default[:hudson][:listenPort]}"
+default[:hudson][:cliJar] = "hudson-cli.jar"
+default[:hudson][:cliJarUrl] = "#{default[:hudson][:url]}/jnlpJars/#{default[:hudson][:cliJar]}"
+default[:hudson][:startService] = "false"
