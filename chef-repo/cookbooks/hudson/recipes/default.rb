@@ -28,10 +28,9 @@ package "hudson" do
    provider Chef::Provider::Package::Yum
 end
 
-#TODO, make idempotent
 service "hudson" do
    case startService
    when "true"
-      action :restart
+      action :start
    end
 end
