@@ -1,0 +1,25 @@
+<joblist>
+  <job>
+    <id>1</id>
+    <name>code-promote</name>
+    <description>promote code from development,repository url to obtain development artifacts</description>
+    <loglevel>INFO</loglevel>
+    <group>code</group>
+    <context>
+      <project>test</project>
+      <options>
+        <option name='repoUrl' value='http://localhost:8080/job/dukesbank/lastSuccessfulBuild/artifact/*zip*/archive.zip' enforcedvalues='false' required='true' description='repository url to obtain development artifacts' />
+        <option name='promoteLocation' value='/var/www/pkgs/dukesbank/ears' enforcedvalues='false' required='true' description='repository url to obtain development artifacts' />
+      </options>
+    </context>
+    <sequence threadcount='1' keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>tmpArchive=$(mktemp); curl -fklL ${option.repoUrl} -o ${tmpArchive}</exec>
+      </command>
+    </sequence>
+    <dispatch>
+      <threadcount>1</threadcount>
+      <keepgoing>false</keepgoing>
+    </dispatch>
+  </job>
+</joblist>
