@@ -35,13 +35,15 @@
          export ANT_HOME=<%= @antHome %> 
          export JAVA_HOME=<%= @javaHome %>
          cd examples/bank &amp;&amp;
+         rm -f jar/*.ear
          <%= @antHome %>/bin/ant  -f jboss-build.xml -Djboss.home=<%= @jbossHome %> compile package-ejb package-web package-client assemble-app
+         mv jar/JBossDukesBank.ear jar/JBossDukesBank-${BUILD_NUMBER}.ear
       </command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>examples/bank/jar/JBossDukesBank.ear</artifacts>
+      <artifacts>examples/bank/jar/JBossDukesBank-*.ear</artifacts>
       <latestOnly>false</latestOnly>
     </hudson.tasks.ArtifactArchiver>
   </publishers>

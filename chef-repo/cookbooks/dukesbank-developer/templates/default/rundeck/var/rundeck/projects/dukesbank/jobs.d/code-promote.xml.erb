@@ -1,0 +1,27 @@
+<joblist>
+  <job>
+    <name>code-promote</name>
+    <description>promote code from development repository url to obtain development artifacts</description>
+    <loglevel>INFO</loglevel>
+    <group>code</group>
+    <context>
+      <project><%= @rundeckProject %></project>
+      <options>
+        <option name='repoUrl' value='http://<%= @hudsonServer %>:<%= @hudsonPort %>/job/<%= @hudsonProject %>/lastSuccessfulBuild/artifact/*zip*/archive.zip' enforcedvalues='false' required='true' description='repository url to obtain development artifacts' />
+        <option name='promoteLocation' value='/var/www/pkgs/<%= @hudsonProject %>/ears' enforcedvalues='false' required='true' description='repository url to obtain development artifacts' />
+      </options>
+    </context>
+    <sequence threadcount='1' keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>mkdir -p ${option.promoteLocation}</exec>
+      </command>
+      <command>
+        <exec>umask 002; tmpArchive=$(mktemp); curl -fkL ${option.repoUrl} -o ${tmpArchive} &amp;&amp; unzip -j -d ${option.promoteLocation} ${tmpArchive}  &amp;&amp; rm -f ${tmpArchive}</exec>
+      </command>
+    </sequence>
+    <dispatch>
+      <threadcount>1</threadcount>
+      <keepgoing>false</keepgoing>
+    </dispatch>
+  </job>
+</joblist>

@@ -11,6 +11,7 @@ apacheInstallRoot = node[:apache][:installRoot]
 apacheUser = node[:apache][:user]
 apacheGroup = node[:apache][:group]
 apacheListenPorts = node[:apache][:listenPorts]
+apachePkgRoot = node[:apache][:pkgRoot]
 
 
 
@@ -49,6 +50,9 @@ template "#{apacheInstallRoot}/etc/httpd/conf.d/pkgRepo.conf" do
   owner "root"
   group "root"
   notifies :restart, resources(:service => "httpd")
+  variables({
+    :pkgRoot => apachePkgRoot
+  })
 end
 
 template "#{apacheInstallRoot}/etc/httpd/conf.d/yum.conf" do
@@ -58,3 +62,11 @@ template "#{apacheInstallRoot}/etc/httpd/conf.d/yum.conf" do
   group "root"
   notifies :restart, resources(:service => "httpd")
 end
+
+directory "#{apachePkgRoot}/dukesbank" do
+   owner apacheUser
+   group "rundeck"
+   mode "0775"
+   action :create
+end
+

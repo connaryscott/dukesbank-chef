@@ -1,0 +1,18 @@
+#!/bin/bash
+echo Content-type: application/json
+echo ""
+
+for VAR in `echo $QUERY_STRING | tr "&" "\t"`
+  do 
+  NAME=$(echo $VAR | tr = " " | awk '{print $1}';);
+  VALUE=$(echo $VAR | tr = " " | awk '{ print $2}' | tr + " ");
+  declare $NAME="$VALUE";
+done
+
+
+echo '['
+   for artifact in $(curl -s -l -L ${repoUrl} |sed 's,.*<a href="\([^\"]*\)".*,\1,' |grep ear$)
+   do
+      echo "{name:\"${artifact}\",value:\"${artifact}\"},"
+   done
+echo ']'

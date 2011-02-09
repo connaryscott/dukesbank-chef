@@ -25,11 +25,5 @@ include_recipe "rundeck"
 
 generateShellEnvironment "bashrc"
 bootstrapSubversionEnvironment "demoPkgs"
-generateAndLoadHudsonProject "hudsonConfig"
-
-#loadJobs "rundeckJobs" do
-  #user rundeckUser
-  #group rundeckGroup
-  #templateDir developerRundeckJobsTemplateDir
-  #jobs developerRundeckJobs
-#end
+generateAndLoadHudsonProject "dukesbank"
+loadJobs "rundeckJobs"

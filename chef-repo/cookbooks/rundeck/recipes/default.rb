@@ -9,6 +9,7 @@
 
 
 startService = node[:hudson][:startService]
+projectsDir = node[:rundeck][:projectsDir]
 projects = "#{node[:rundeck][:projects]}"
 rundeckUser = node[:rundeck][:user] 
 rundeckGroup = node[:rundeck][:group] 
@@ -41,7 +42,7 @@ service "rundeckd" do
 end
 
 createProjects "rundeck" do
-  projectsDir "/var/rundeck/projects"
+  projectsDir projectsDir
   projects "#{projects}"
   user rundeckUser
   group rundeckGroup

@@ -1,0 +1,27 @@
+<joblist>
+  <job>
+    <name>code-deploy</name>
+    <description>deploy code from pkg repository url</description>
+    <loglevel>INFO</loglevel>
+    <group>code</group>
+    <context>
+      <project><%= @rundeckProject %></project>
+      <options>
+        <option name='deployLocation' value='/tmp' enforcedvalues='false' required='true' description='code deployment location' />
+        <option name="package" value="package-name" enforcedvalues="true" required="false" valuesUrl="http://localhost/options/dukesbank/code-deploy.options?repoUrl=http://localhost/pkgs/dukesbank/ears/"/>
+      </options>
+    </context>
+    <sequence threadcount='1' keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>echo hey lets get ${option.package}</exec>
+      </command>
+      <command>
+        <exec>curl -Lfk  -o ${option.deployLocation}/${option.package} http://localhost/pkgs/dukesbank/ears/${option.package}</exec>
+      </command>
+    </sequence>
+    <dispatch>
+      <threadcount>1</threadcount>
+      <keepgoing>false</keepgoing>
+    </dispatch>
+  </job>
+</joblist>

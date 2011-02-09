@@ -1,7 +1,13 @@
 #
 # pkg repository location
 #
-Alias /pkgs/ /var/www/pkgs/
-<Directory /var/www/pkgs>
+Alias /pkgs/ <%= @pkgRoot %>/
+<Directory <%= @pkgRoot %>>
    Options Indexes
 </Directory> 
+
+ScriptAliasMatch ^/options/([^/]*)/(.*) /var/rundeck/projects/$1/jobs.d/options/$2
+<Directory /var/rundeck/projects/*/jobs.d/options>
+   Options +ExecCGI
+   AddHandler cgi-script .options
+</Directory>
